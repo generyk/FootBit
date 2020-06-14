@@ -5,7 +5,7 @@ def new
 end
 
 def index
-  @users = User.all 
+  @users = User.all
 end
 
 def create
@@ -19,7 +19,7 @@ def create
 end
 
 def show
-  @user = User.find_by(id: params[:id])
+  @user = User.find_by_id(params[:id])
 end
 
 private
