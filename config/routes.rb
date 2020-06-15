@@ -9,12 +9,12 @@ post '/login' => 'sessions#create'
 delete '/signout' => 'sessions#destroy'
 
 
-
+  resources :tryouts
+  resources :users do
+    resources :teams, only: [:new,:create,:index]
+  end
   resources :teams do
-    resources :tryouts, only: [:new, :edit, :show]
+    resources :tryouts, only: [:new,:create,:index]
   end
 
-  resources :tryouts
-  resources :users
-  resources :teams 
 end

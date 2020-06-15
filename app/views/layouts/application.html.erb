@@ -12,15 +12,21 @@
   <body>
     <div>
       <% if logged_in?%>
-      <%= link_to "Add New Tryout", new_tryout_path %> |
-      <%= link_to "All Tryouts", tryouts_path %> |
+      <%= link_to "Add New Team", new_team_path %> |
+      <%= link_to "All Teams", teams_path %> |
       <%= link_to "Signout", signout_path, method:"delete"%>
 
       <% else %>
       <%=link_to "Sign Up", signup_path %> |
       <%=link_to "Log In", login_path %>
-      <% end %> 
+      <% end %>
 
+      </div>
+
+      <div>
+        <% if flash[:message] %>
+            <%= flash[:message]%>
+        <% end %>
       </div>
 
     <%= yield %>
