@@ -6,13 +6,27 @@ before_action :redirect_if_not_logged_in
   end
 
   def create
-    @team = Team.new(team_params)
-    @team.user_id = session[:user_id]
+    @team = current_user.teams.build(team_params)
+
     if @team.save
-      redirect_to team_path
+      redirect_to teams_path
     else
       render :new
     end
+  end
+
+  def index
+    if params[:user_id] && @user = User.find_by_id(params[:user_id])
+      @tryouts = @user.tryouts
+    else
+      @error = "This user doesn't exist" if params[:user_id]
+      @tryouts = Tryout.all
+      end
+    end
+
+  def show
+    @team = Team.find_by_id(params[:id])
+    redirect_to teams_path if !@team
   end
 
   private
