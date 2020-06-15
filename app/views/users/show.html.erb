@@ -1,7 +1,7 @@
 <h1>Welcome <%=@user.username %></h1>
 
-<%= form_tag("/signout", method: 'delete') do %>
+<%= form_tag("/signout", method: 'delete' ) do %>
 
-  <% submit_tag "Signout" %>
+  <%= submit_tag "Signout" %>
 
 <% end %>

@@ -8,10 +8,13 @@ get '/login' => 'sessions#new'
 post '/login' => 'sessions#create'
 delete '/signout' => 'sessions#destroy'
 
-  resources :tryouts
-  resources :users
+
 
   resources :teams do
-    resources :tryouts
+    resources :tryouts, only: [:new, :edit, :show]
   end
+
+  resources :tryouts
+  resources :users
+  resources :teams 
 end
