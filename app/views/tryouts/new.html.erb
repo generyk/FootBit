@@ -1,13 +1,36 @@
+<% if @tryout.team %>
+<h1>New Tryout for <%= @tryout.team.name%>!</h1>
+
+<% else %>
 <h1>New Tryout</h1>
+<% end %>
 
-<%= form_for(@tryout) do |f|%>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+
+<% if @tryout.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tryout.errors.count, "error") %> prohibited this tryout from being saved:</h2>
+
+    <ul>
+    <% @tryout.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for([@tryout.team,@tryout]) do |f|%>
+
+  <% if !@tryout.team %>
+  <%= f.label :team %>
+  <%= f.collection_select :team_id, Team.all, :id, :name %>
+  <% else %>
+    <%= f.hidden_field :team_id %>
+  <% end %>
 
   <%= f.label :content %>
   <%= f.text_field :content %>
 
-    <%= f.submit "Create" %>
+    <%= f.submit %>
 
 <% end %>

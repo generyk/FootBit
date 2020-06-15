@@ -9,7 +9,7 @@ before_action :redirect_if_not_logged_in
     @team = Team.new(team_params)
     @team.user_id = session[:user_id]
     if @team.save
-      redirect_to team_path(@team)
+      redirect_to team_path
     else
       render :new
     end

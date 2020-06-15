@@ -3,7 +3,8 @@
 
 <div><%= @team.location%></div>
 
-<p><%= link_to 'See all tryouts',team_tryouts_path(@team)%></p>
+<p><%= link_to 'See all tryouts', team_tryout_path(@team)%></p>
+<p><%= link_to 'Add new tryouts', new_team_tryout_path(@team)%></p>
 
 <h4>Tryouts:</h4>
 <% @team.tryouts.each do |c|%>

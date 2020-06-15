@@ -5,12 +5,18 @@ class TryoutsController < ApplicationController
     if params[:team_id] && @team = Team.find_by_id(params[:team_id])
       @tryouts = @team.tryouts
     else
+    @error = "This team doesn't exist" if params[:team_id]
     @tryouts = Tryout.all
     end
   end
 
   def new
+    if params[:team_id] && @team = Team.find_by_id(params[:team_id])
+      @tryout = @team.tryouts.build
+    else
+    @error = "This team doesn't exist" if params[:team_id]
     @tryout = Tryout.new
+    end
   end
 
   def create
@@ -30,9 +36,18 @@ class TryoutsController < ApplicationController
     @tryout = Tryout.find_by(id: params[:id])
   end
 
+  def update
+    @tryout = Tryout.find_by(id: params[:id])
+    if @tryout.update(tryout_params)
+      redirect_to tryout_path(@tryout)
+    else
+      render :edit
+    end
+  end 
+
   private
 
   def tryout_params
-    params.require(:tryout).permit(:title,:content)
+    params.require(:tryout).permit(:title,:content,:team_id)
   end
 end
