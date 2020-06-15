@@ -8,6 +8,8 @@ get '/login' => 'sessions#new'
 post '/login' => 'sessions#create'
 delete '/signout' => 'sessions#destroy'
 
+get "/auth/:provider/callback" => 'sessions#google'
+
 resources :teams do
   resources :tryouts, only: [:new,:create,:index]
 end
