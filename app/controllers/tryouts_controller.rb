@@ -22,7 +22,7 @@ class TryoutsController < ApplicationController
   def create
     @tryout = current_user.tryouts.build(tryout_params)
     if @tryout.save
-      redirect_to tryout_path
+      redirect_to tryout_path(@tryout)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class TryoutsController < ApplicationController
 
   def edit
     @tryout = Tryout.find_by(id: params[:id])
-    redirect_to tryout_path if !@tryout || @tryout.user != current_user
+    redirect_to tryout_path(@tryout) if !@tryout || @tryout.user != current_user
   end
 
   def update
