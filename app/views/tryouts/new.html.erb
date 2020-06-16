@@ -1,23 +1,11 @@
 <% if @tryout.team %>
-<h1>New Tryout for <%= @tryout.team.name%>!</h1>
-
+<h1>New Tryout for <%= @tryout.team.name%></h1>
 <% else %>
 <h1>New Tryout</h1>
 <% end %>
 
 
 
-<% if @tryout.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@tryout.errors.count, "error") %> prohibited this tryout from being saved:</h2>
-
-    <ul>
-    <% @tryout.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <%= form_for([@tryout.team,@tryout]) do |f|%>
 

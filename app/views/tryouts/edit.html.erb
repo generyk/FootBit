@@ -1,0 +1,13 @@
+<h1>Edit Tryout</h1>
+
+<%= form_for(@tryout) do |f|%>
+
+  <%= f.label :team %>
+  <%= f.collection_select :team_id, Team.all, :id, :name %>
+
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+
+    <%= f.submit %>
+
+<% end %>

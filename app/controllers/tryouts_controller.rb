@@ -34,16 +34,18 @@ class TryoutsController < ApplicationController
 
   def edit
     @tryout = Tryout.find_by(id: params[:id])
+    redirect_to tryout_path if !@tryout || @tryout.user != current_user
   end
 
   def update
     @tryout = Tryout.find_by(id: params[:id])
+    redirect_to tryout_path if !@tryout || @tryout.user != current_user
     if @tryout.update(tryout_params)
       redirect_to tryout_path(@tryout)
     else
       render :edit
     end
-  end 
+  end
 
   private
 

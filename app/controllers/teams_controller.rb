@@ -17,10 +17,10 @@ before_action :redirect_if_not_logged_in
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @tryouts = @user.tryouts.alpha 
+      @teams = @user.teams
     else
       @error = "This user doesn't exist" if params[:user_id]
-      @tryouts = Tryout.alpha
+      @teams = Team.alpha  
       end
     end
 
