@@ -27,7 +27,7 @@ def create
   else
     redirect_to '/'
   end
-end 
+end
 
   private
 
